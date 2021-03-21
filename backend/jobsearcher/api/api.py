@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask.wrappers import Request
+from indeedScraper import getList
 from flask_cors import CORS
 
 ## This file is the Flask GET API endpoint for the Backend PackHacks workshop.
@@ -22,10 +22,9 @@ def getJobs():
     if request.method == 'GET': # Checks if it's a GET request
         ## This sets the data variable to a list of dictionaries, and places one dictionary,
         ## the example dictionary below, to the list.
-        data = [dict(id='1', name='max', email='max@gmail.com')]
-
+        data = getList()
         ## This "JSON"ifys the dictionary list into a JSON object for returning.
-        response = jsonify(data);
+        response = jsonify(data)
 
         ## This places the HTTP status code 202 ("Accepted")
         response.status_code = 202
